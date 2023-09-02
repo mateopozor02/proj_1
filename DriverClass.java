@@ -38,6 +38,10 @@ public class DriverClass {
         Function<Plato, Float> byPrice = Plato::getPrecio; 
         Comparator<Plato> byPriceComparator = Comparator.comparing(byPrice);
 
+        //Function that gets the date of a dish
+        Function<Plato, Calendar> byDate = Plato::getFechaInicio;
+        Comparator<Plato> byDateComparator = Comparator.comparing(byDate);
+
         System.out.println("Platos ordenados por precio: ");
         platos.stream().sorted(byPriceComparator).forEach(p -> {
             p.getComponentes().sort((c1, c2) -> c2.compareTo(c1));
@@ -45,7 +49,7 @@ public class DriverClass {
         });
         System.out.println();
 
-        //group Platos by year 
+        //Platos agrupados por anio de incio
         System.out.println("Platos agrupados por año: ");
 
         Map<Integer, List<Plato>> groupedByYear = platos.stream().collect(Collectors.groupingBy(p -> p.getFechaInicio().get(Calendar.YEAR)));
@@ -54,6 +58,25 @@ public class DriverClass {
             platosList.forEach(p -> System.out.println(p));
             System.out.println();
         });
+
+        //Platos agrupados por rango de precio
+        System.out.println("Platos agrupados por rango de precio: ");
+
+        Map<String, List<Plato>> groupedByPriceRange = platos.stream().collect(Collectors.groupingBy(p -> {
+            if(p.getPrecio() < 10){
+                return "Menos de 10";
+            }else if(p.getPrecio() >= 10 && p.getPrecio() < 20){
+                return "Entre 10 y 20";
+            }else{
+                return "Mas de 20";
+            }
+        }));
+        groupedByPriceRange.forEach((range, platosList) -> {
+            System.out.println(range);
+            platosList.stream().sorted(byDateComparator).forEach(p -> System.out.println(p));
+            System.out.println();
+        });
+        System.out.println();
 
     }
 
