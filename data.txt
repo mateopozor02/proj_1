@@ -1,0 +1,4 @@
+Apanado 20-06-2010 12.50 arroz,carne,apanadura,lechuga,tomate 
+Hamburguesa 16-08-2015 10.25 carne,pan,lechuga,tomate 
+Tigrillo 15-09-2007 9.22 verde,queso,carne
+Encebollado 15-10-2007 8.21 cebolla,pescado,limon
