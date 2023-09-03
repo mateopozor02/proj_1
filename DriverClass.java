@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.stream.Stream;
-import java.util.function.Function; 
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors; 
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class DriverClass {
             System.out.println();
         });
 
-        //Platos agrupados por rango de precio
+        //Platos agrupados por rango de precio y ordenados por fecha de inicio 
         System.out.println("Platos agrupados por rango de precio: ");
 
         Map<String, List<Plato>> groupedByPriceRange = platos.stream().collect(Collectors.groupingBy(p -> {
@@ -76,6 +77,24 @@ public class DriverClass {
             platosList.stream().sorted(byDateComparator).forEach(p -> System.out.println(p));
             System.out.println();
         });
+        System.out.println();
+
+        //Platos agrupados por anio de inicio y ordenados por descripcion
+        System.out.println("Platos agrupados por año de inicio y ordenados por descripcion: ");
+        Map<Integer, List<Plato>> groupedByYearSortByDescription = platos.stream()
+                                                                            .collect(Collectors.groupingBy(p -> p.getFechaInicio().get(Calendar.YEAR)));
+        groupedByYearSortByDescription.forEach((year, platosList) -> {
+            System.out.println(year);
+            platosList.stream().sorted(byDescriptionComparator).forEach(p -> System.out.println(p));
+            System.out.println();
+        });
+        System.out.println();
+
+        //Platos con tres o mas componentes
+        Predicate<Plato> hasThreeOrMoreComponents = p -> p.getComponentes().size() >= 3;
+
+        System.out.println("Platos con tres o mas componentes: ");
+        platos.stream().filter(hasThreeOrMoreComponents).sorted(byDescriptionComparator).forEach(p -> System.out.println(p));
         System.out.println();
 
     }
