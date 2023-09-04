@@ -44,10 +44,7 @@ public class DriverClass {
             System.out.println("Error: " + e.getMessage());
         }
 
-        // display de todos los platos
-        //platos.stream().forEach(System.out::println);
-
-
+    
         // 4) Lista de componentes ordenada alfabeticamente, lista de componente ordenada alfabéticamente
         Function<Plato, String> byDescription = Plato::getDescripcion;
         Comparator<Plato> byDescriptionComparator = Comparator.comparing(byDescription);
