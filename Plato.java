@@ -14,6 +14,13 @@ public class Plato implements Comparable<Plato>{
         this.componentes = componentes;
     }
 
+    public Plato(){
+        this.descripcion = "";
+        this.fechaInicio = Calendar.getInstance();
+        this.precio = 0;
+        this.componentes = null;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
