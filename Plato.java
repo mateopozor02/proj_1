@@ -2,10 +2,10 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Plato implements Comparable<Plato>{
-    private String descripcion; 
+    private String descripcion;
     private Calendar fechaInicio;
-    private float precio; 
-    private List<String> componentes; 
+    private float precio;
+    private List<String> componentes;
 
     public Plato(String descripcion, Calendar fechaInicio, float precio, List<String> componentes) {
         this.descripcion = descripcion;
@@ -51,11 +51,11 @@ public class Plato implements Comparable<Plato>{
     }
 
     private String getDate(){
-        return this.fechaInicio.get(Calendar.DAY_OF_MONTH) + "-" 
-        + this.fechaInicio.get(Calendar.MONTH) + "-" + this.fechaInicio.get(Calendar.YEAR);
+        return this.fechaInicio.get(Calendar.DAY_OF_MONTH) + "-"
+                + this.fechaInicio.get(Calendar.MONTH) + "-" + this.fechaInicio.get(Calendar.YEAR);
     }
 
-    @Override 
+    @Override
     public String toString(){
         return String.format("%-15s %-10s %10.2f %s", this.descripcion, this.getDate(), this.precio, this.componentes);
     }
